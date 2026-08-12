@@ -1,4 +1,4 @@
-# Global Constraints & Execution Rules for Dev Buddies
+# Globalne Ograniczenia i Reguły Wykonawcze dla Dev Buddies
 
 Niezmienne reguły i wytyczne dla wszystkich subagentów z rodziny **Dev Buddies** pracujących w środowisku Google Antigravity.
 
@@ -20,13 +20,15 @@ Niezmienne reguły i wytyczne dla wszystkich subagentów z rodziny **Dev Buddies
   - `.agents/docs/DATA_MODEL.md` (Model danych, relacje, schematy ER)
   - `.agents/docs/INFRA_SETUP.md` (Instrukcja uruchomienia, env variables, Docker)
 
-## 3. 🎨 MERMAID DIAGRAM STANDARDS
+---
 
-When generating architectural or data flow diagrams:
-1. **Layout Direction**: Always use `graph LR` (Left to Right) for architecture, pipelines, and data lineage.
-2. **No Orchestrator Enclosure**: Workflows, Cron jobs, or Schedulers MUST NOT wrap other components in a `subgraph`. Place them on the far left as trigger nodes (`Trigger .-> Target`).
-3. **Flat Subgraphs**: Do NOT nest subgraphs inside other subgraphs. Keep all subgraphs on a single horizontal level.
-4. **Final Pass**: Always invoke `diagram-reviewer` after generating documentation to perform a final visual lint on all `.agents/docs/*.md` files.
+## 3. 🎨 STANDARDY DIAGRAMÓW MERMAID.JS
+
+Podczas generowania diagramów architektury lub przepływu danych:
+1. **Kierunek Layoutu**: Zawsze używaj `graph LR` (Od lewej do prawej) dla architektury, potoków danych i liniowości danych.
+2. **Brak Zamknięcia Orchestratora**: Workflowy, zadania Cron lub Schedulery NIE MOGĄ owijać innych komponentów w `subgraph`. Umieszczaj je po lewej stronie jako węzły wyzwalające (`Trigger .-> Target`).
+3. **Płaskie Subgraphy**: NIE zagnieżdżaj subgraphów wewnątrz innych subgraphów. Utrzymuj wszystkie subgraphy na jednym poziomie poziomym.
+4. **Krok Końcowy**: Zawsze wywołuj `diagram-reviewer` po wygenerowaniu dokumentacji, aby przeprowadzić końcowy weryfikacyjny lint wizualny plików w `.agents/docs/*.md`.
 
 ---
 
@@ -38,6 +40,6 @@ When generating architectural or data flow diagrams:
 
 ---
 
-## 5. DAG Execution & Zrównoleglenie
+## 5. Wykonanie DAG & Zrównoleglenie
 - Subagenci pracują jako niezależne lub połączone w DAG (Directed Acyclic Graph) jednostki.
 - Subagent niższego szczebla (np. `impact-navigator`) może odwoływać się do wygenerowanej wcześniej dokumentacji w `.agents/docs/` bez potrzeby ponownej pełnej analizy kodu.

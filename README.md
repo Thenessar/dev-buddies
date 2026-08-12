@@ -40,7 +40,7 @@ Zamiast jednego przeciążonego agenta, **dev-buddies** dzieli pracę na wyspecj
 ```text
 dev-buddies/
 ├── agents/
-│   ├── app-guide.md            # Buddy od architektura i API
+│   ├── app-guide.md            # Buddy od architektury i API
 │   ├── business-interpreter.md # Buddy od logiki biznesowej
 │   ├── data-docent.md          # Buddy od baz danych i ETL
 │   ├── infra-docent.md         # Buddy od Docker/CI/CD/Infry
