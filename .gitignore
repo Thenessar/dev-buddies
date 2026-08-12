@@ -1,0 +1,10 @@
+# Dev Buddies Output Docs
+.agents/docs/
+
+# OS & Editor files
+.DS_Store
+Thumbs.db
+*.tmp
+*.log
+.vscode/
+.idea/
