@@ -20,12 +20,13 @@ Niezmienne reguły i wytyczne dla wszystkich subagentów z rodziny **Dev Buddies
   - `.agents/docs/DATA_MODEL.md` (Model danych, relacje, schematy ER)
   - `.agents/docs/INFRA_SETUP.md` (Instrukcja uruchomienia, env variables, Docker)
 
----
+## 3. 🎨 MERMAID DIAGRAM STANDARDS
 
-## 3. Standard Diagramów (Mermaid.js)
-- Używaj **Mermaid.js** do wizualizacji przepływów, relacji baz danych i architektury.
-- Zawsze ujmuj etykiety węzłów w cudzysłowy, aby uniknąć błędów składniowych (np. `node["Opis (dodatkowy)"]`).
-- Nie stosuj znaczników HTML wewnątrz diagramów Mermaid.
+When generating architectural or data flow diagrams:
+1. **Layout Direction**: Always use `graph LR` (Left to Right) for architecture, pipelines, and data lineage.
+2. **No Orchestrator Enclosure**: Workflows, Cron jobs, or Schedulers MUST NOT wrap other components in a `subgraph`. Place them on the far left as trigger nodes (`Trigger .-> Target`).
+3. **Flat Subgraphs**: Do NOT nest subgraphs inside other subgraphs. Keep all subgraphs on a single horizontal level.
+4. **Final Pass**: Always invoke `diagram-reviewer` after generating documentation to perform a final visual lint on all `.agents/docs/*.md` files.
 
 ---
 

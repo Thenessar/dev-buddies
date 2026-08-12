@@ -21,6 +21,7 @@ Zamiast jednego przeciążonego agenta, **dev-buddies** dzieli pracę na wyspecj
 | 🗄️ **data-docent** | Analizuje schematy baz danych, modele ORM, zapytania SQL oraz liniowość danych (*data lineage*). | `.agents/docs/DATA_MODEL.md` |
 | 🐳 **infra-docent** | Wyciąga instrukcje lokalnego uruchomienia, zmienne środowiskowe, pliki Dockerfile oraz pipeline'y CI/CD. | `.agents/docs/INFRA_SETUP.md` |
 | 🎯 **impact-navigator** | Działa jako asystent zadań. Gdy dostajesz taska z Jiry, wdrożony agent wskazuje dokładne pliki i funkcje, które musisz zmodyfikować. | `.agents/docs/TASK_IMPACT.md` |
+| 🎨 **diagram-reviewer** | Wyspecjalizowany agent do lintowania, upraszczania i formatowania diagramów Mermaid.js. | Wyznacznik jakości w `.agents/docs/*.md` |
 | 🕵️ **code-reviewer** (*Alex*) | Persona surowego Staff Engineera, który robi audyt Twoich zmian w kodzie (PR) pod kątem zgodności z architekturą i regułami biznesowymi. | `.agents/docs/CODE_REVIEW_REPORT.md` |
 
 ---
@@ -39,14 +40,15 @@ Zamiast jednego przeciążonego agenta, **dev-buddies** dzieli pracę na wyspecj
 ```text
 dev-buddies/
 ├── agents/
-│   ├── app-guide.md            # Buddy od architektury i API
+│   ├── app-guide.md            # Buddy od architektura i API
 │   ├── business-interpreter.md # Buddy od logiki biznesowej
 │   ├── data-docent.md          # Buddy od baz danych i ETL
 │   ├── infra-docent.md         # Buddy od Docker/CI/CD/Infry
 │   ├── impact-navigator.md     # Buddy do wyznaczania zakresu tasków
+│   ├── diagram-reviewer.md     # Lintowanie i formatowanie diagramów Mermaid.js
 │   └── code-reviewer.md        # Alex - Staff Engineer do CR
 ├── rules/
-│   └── global-constraints.md   # Zasady budżetu kontekstu i Graceful Exit
+│   └── global-constraints.md   # Zasady budżetu kontekstu, diagramów i Graceful Exit
 ├── init.sh                     # Skrypt Bash inicjalizujący paczkę
 ├── init.ps1                    # Skrypt PowerShell dla Windows
 └── README.md
