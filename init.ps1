@@ -1,6 +1,6 @@
 # init.ps1 - Dociąga paczkę dev-buddies do dowolnego projektu w środowisku Windows (PowerShell)
 
-$RepoUrl = "https://github.com/TWOJ_GITHUB/dev-buddies.git"
+$RepoUrl = "https://github.com/thenessar/dev-buddies.git"
 $TargetDir = ".agents"
 
 Write-Host "🤖 Inicjalizacja zespołu Dev Buddies..." -ForegroundColor Cyan

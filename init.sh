@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # init.sh - Dociąga paczkę dev-buddies do dowolnego projektu
 
-REPO_URL="https://github.com/TWOJ_GITHUB/dev-buddies.git"
+REPO_URL="https://github.com/thenessar/dev-buddies.git"
 TARGET_DIR=".agents"
 
 echo "🤖 Inicjalizacja zespołu Dev Buddies..."
