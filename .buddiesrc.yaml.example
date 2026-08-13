@@ -1,0 +1,47 @@
+# .buddiesrc.yaml.example
+# Opcjonalna konfiguracja projektu dla Dev Buddies (Google Antigravity & GitHub Copilot)
+
+version: "1.0"
+project:
+  name: "My Awesome Project"
+  language: "pl" # "pl" lub "en" (język generowanej dokumentacji)
+  architecture_style: "modular-monolith" # "modular-monolith" | "microservices" | "clean-architecture" | "layered"
+
+output:
+  docs_directory: ".agents/docs"
+  auto_generate_portal: true
+
+discovery:
+  exclude_paths:
+    - "**/node_modules/**"
+    - "**/dist/**"
+    - "**/build/**"
+    - "**/.git/**"
+    - "**/vendor/**"
+    - "**/coverage/**"
+    - "**/generated/**"
+    - "**/tests/fixtures/**"
+
+buddies:
+  lead-orchestrator:
+    enabled: true
+  app-guide:
+    enabled: true
+  domain-architect:
+    enabled: true
+  data-architect:
+    enabled: true
+  infra-architect:
+    enabled: true
+  security-auditor:
+    enabled: true
+  test-strategist:
+    enabled: true
+  task-navigator:
+    enabled: true
+  pre-pr-reviewer:
+    enabled: true
+    format: "conventional-comments"
+  diagram-reviewer:
+    enabled: true
+    enforce_direction: "graph LR"

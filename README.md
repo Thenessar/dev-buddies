@@ -1,89 +1,183 @@
-# 🚀 Projekt `dev-buddies`
+# Dev Buddies
 
-> **Lekki, przenośny zestaw wyspecjalizowanych subagentów AI dla środowiska Google Antigravity, zaprojektowany z myślą o natychmiastowym wdrożeniu dewelopera (*developer onboarding*) w nowe lub nieznane repozytorium kodu.**
+> **Przenośny, wieloplatformowy pakiet wyspecjalizowanych subagentów AI (Google Antigravity & GitHub Copilot), zaprojektowany w celu skrócenia czasu wdrożenia dewelopera (*Developer Onboarding*) oraz asysty przy pierwszych zadaniach w nieznanym lub złożonym repozytorium.**
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Google Antigravity](https://img.shields.io/badge/Platform-Google%20Antigravity-4285F4.svg)](https://antigravity.google)
+[![GitHub Copilot](https://img.shields.io/badge/Compatible-GitHub%20Copilot-black.svg)](https://github.com/features/copilot)
+[![Architecture: C4 Model](https://img.shields.io/badge/Architecture-C4%20Model-orange.svg)](https://c4model.com)
 
 ---
 
-## 🎯 Main Use Case (Główny Cel)
+## Filozofia: AI jako "Buddy", a nie Zastępstwo dla Programisty
 
-Projekt rozwiązuje problem braku aktualnej dokumentacji oraz długiego czasu potrzebnego na poznanie nowej bazy kodu. Zamiast spędzać godziny na ręcznym przekopywaniu plików i zgadywaniu logiki, zaciągasz zespół agentów do nowego repozytorium, a oni automatycznie budują dla Ciebie kompletną bazę wiedzy.
+Współczesne bazy kodu w firmach IT to dziesiątki powiązanych modułów, nieoczywiste reguły biznesowe i rozproszona wiedza. **Dev Buddies** rozwiązuje problem długiego wejścia w projekt (*Time-to-First-Commit*):
+
+1. **Błyskawiczna Baza Wiedzy**: W kilka minut generuje kompletny portal wiedzy (`.agents/docs/`) oparty o standardy **C4 Model** oraz **Domain-Driven Design (DDD)**.
+2. **Asystent Pierwszych Zadań**: Pomaga zrozumieć zakres zmian dla nowych tasków (wyznacza *Impact Vector* i plan implementacji krok po kroku).
+3. **Pre-PR Sanity Check**: Działa jak lokalny Senior Buddy – pozwala sprawdzić kod przed oddaniem go do oficjalnego Code Review dla kolegów z zespołu.
+4. **Pełna Kontrola Dewelopera**: Dokumentacja i agenci są narzędziem pomocniczym dla Ciebie. Gdy poznasz projekt, pracujesz samodzielnie bez narzutu.
 
 ---
 
-## 🤖 Zespół Subagentów (Dev Buddies)
+## Zespół Subagentów (The Buddies Squad)
 
-Zamiast jednego przeciążonego agenta, **dev-buddies** dzieli pracę na wyspecjalizowane role o ograniczonym i czystym oknie kontekstowym:
+Zamiast jednego przeciążonego promptu, **Dev Buddies** dzieli pracę na wyspecjalizowane role zoptymalizowane pod kątem ekonomii kontekstu:
 
-| Subagent | Rola i Odpowiedzialność | Plik wynikowy |
+```mermaid
+graph LR
+    User["Developer / Engineer"] --> Orchestrator["lead-orchestrator"]
+    
+    subgraph Discovery ["1. Discovery & Onboarding Squad"]
+        Orchestrator --> AppGuide["app-guide"]
+        Orchestrator --> DomainArch["domain-architect"]
+        Orchestrator --> DataArch["data-architect"]
+        Orchestrator --> InfraArch["infra-architect"]
+    end
+
+    subgraph Assurance ["2. Security & Quality Squad"]
+        Orchestrator --> SecAuditor["security-auditor"]
+        Orchestrator --> TestStrategist["test-strategist"]
+    end
+
+    subgraph Workflow ["3. Daily Tasks & Delivery"]
+        User -.-> TaskNav["task-navigator"]
+        User -.-> PrePR["pre-pr-reviewer"]
+        Orchestrator --> DiagramRev["diagram-reviewer"]
+    end
+```
+
+### Role i Odpowiedzialności:
+
+| Subagent | Rola i Obszar Analizy | Plik Wynikowy |
 |---|---|---|
-| 💼 **business-interpreter** | Odtwarza logikę biznesową, procesy i słownik pojęć domenowych wprost z kodu (enumy, reguły walidacji, integracje API). | `.agents/docs/BUSINESS_DICTIONARY.md`<br>`.agents/docs/BUSINESS_LOGIC.md` |
-| 🗺️ **app-guide** | Mapuje architekturę aplikacji, routing API, punkty wejścia i przepływ żądań HTTP. | `.agents/docs/ARCHITECTURE.md` |
-| 🗄️ **data-docent** | Analizuje schematy baz danych, modele ORM, zapytania SQL oraz liniowość danych (*data lineage*). | `.agents/docs/DATA_MODEL.md` |
-| 🐳 **infra-docent** | Wyciąga instrukcje lokalnego uruchomienia, zmienne środowiskowe, pliki Dockerfile oraz pipeline'y CI/CD. | `.agents/docs/INFRA_SETUP.md` |
-| 🎯 **impact-navigator** | Działa jako asystent zadań. Gdy dostajesz taska z Jiry, wdrożony agent wskazuje dokładne pliki i funkcje, które musisz zmodyfikować. | `.agents/docs/TASK_IMPACT.md` |
-| 🎨 **diagram-reviewer** | Wyspecjalizowany agent do lintowania, upraszczania i formatowania diagramów Mermaid.js. | Wyznacznik jakości w `.agents/docs/*.md` |
-| 🕵️ **code-reviewer** (*Alex*) | Persona surowego Staff Engineera, który robi audyt Twoich zmian w kodzie (PR) pod kątem zgodności z architekturą i regułami biznesowymi. | `.agents/docs/CODE_REVIEW_REPORT.md` |
+| **`lead-orchestrator`** | Główny koordynator. Bada strukturę repo, zrównolegla pracę agentów i generuje spójny portal. | `.agents/docs/ONBOARDING_PORTAL.md` |
+| **`app-guide`** | Architektura systemu w standardzie C4 (Container/Component), routing API, punkty startowe. | `.agents/docs/ARCHITECTURE.md` |
+| **`domain-architect`** | Logika domenowa (DDD), słownik pojęć (*Ubiquitous Language*), maszyny stanów, inwarianty. | `.agents/docs/DOMAIN_AND_LOGIC.md` |
+| **`data-architect`** | Bazy danych (SQL/NoSQL), modele ORM, diagram relacji ERD, indeksy, migracje. | `.agents/docs/DATA_MODEL.md` |
+| **`infra-architect`** | Lokalne środowisko (Developer Runbook), zmienne `.env`, Docker Compose, seedowanie. | `.agents/docs/INFRA_SETUP.md` |
+| **`security-auditor`** | Model Auth (JWT/OAuth), matryca uprawnień (RBAC/ABAC), middleware i wektory OWASP. | `.agents/docs/SECURITY_MODEL.md` |
+| **`test-strategist`** | Piramida testów, komendy uruchomieniowe (Unit/E2E), mocki, fabryki danych i luki w QA. | `.agents/docs/TEST_STRATEGY.md` |
+| **`task-navigator`** | Asystent tasków: analiza wpływu (*Task Impact Vector*), plan krok po kroku (TDD). | `.agents/docs/TASK_IMPACT.md` |
+| **`pre-pr-reviewer`** | Lokalny partner przed wystawieniem PR: analiza Conventional Comments, wykrywanie regresji. | `.agents/docs/PRE_PR_REPORT.md` |
+| **`diagram-reviewer`** | Linter diagramów Mermaid.js: formatowanie `graph LR`, spłaszczanie subgraphów. | Wszystkie pliki `.md` |
 
 ---
 
-## ⚙️ Architektura & Workflow ("Clean State")
+## Szybki Start
 
-1. **Centralne Repozytorium-Matka**: Kod i prompty agentów trzymasz w jednym miejscu (`dev-buddies`).
-2. **Zero-Install (Jedna Komenda)**: Wchodzisz do dowolnego, nowego repozytorium i uruchamiasz krótki skrypt/alias (np. `init.sh` lub `init.ps1`), który pobiera najnowszą paczkę agentów do folderu `.agents/`.
-3. **DAG & Isolation**: Agenci pracują w zrównoleglonym przepływie (DAG), używają sandboxa i nie zapychają głównego okna kontekstowego surowym kodem.
-4. **Wynik**: W katalogu `.agents/docs/` powstaje kompletny portal wiedzy z plikiem `ONBOARDING_GUIDE.md` i diagramami Mermaid.js, gotowy do przeczytania w 3 minuty.
+### 1. Inicjalizacja w Dowolnym Projekcie
+
+Otwórz terminal w katalogu głównym projektu, w którym chcesz przeprowadzić onboarding:
+
+#### Linux / macOS (Bash)
+```bash
+curl -sSL https://raw.githubusercontent.com/thenessar/dev-buddies/main/init.sh | bash
+```
+*(Aby automatycznie zainstalować instrukcje dla GitHub Copilot, dodaj flagę `--copilot`)*.
+
+#### Windows (PowerShell)
+```powershell
+irm https://raw.githubusercontent.com/thenessar/dev-buddies/main/init.ps1 | iex
+```
+*(Lub pobierz i uruchom lokalnie `.\init.ps1 -Copilot`)*.
 
 ---
 
-## 📁 Struktura Repozytorium
+## Sposób Użycia
+
+### Środowisko Google Antigravity
+
+1. **Generowanie Pełnego Onboardingu**:  
+   W oknie czatu Antigravity wywołaj:
+   ```text
+   @lead-orchestrator Zbuduj dla mnie pełny portal onboardingowy dla tego repozytorium.
+   ```
+2. **Pomoc w Pierwszym Zadaniu**:  
+   Gdy dostajesz pierwsze zgłoszenie:
+   ```text
+   @task-navigator Chcę zrealizować zadanie: "Dodaj pole NIP firmy i generowanie faktur PDF". Przygotuj dla mnie plan i listę plików.
+   ```
+3. **Sprawdzenie Kodu Przed Wystawieniem PR**:  
+   Po skończonej pracy nad kodem:
+   ```text
+   @pre-pr-reviewer Przejrzyj moje lokalne zmiany przed oddaniem ich do review zespołowi.
+   ```
+
+---
+
+### Środowisko GitHub Copilot (VS Code / JetBrains)
+
+1. **Natywni Agenci VS Code (`.github/agents/`)**:  
+   Skrypty `init.sh --copilot` / `init.ps1 -Copilot` automatycznie instalują agentów w katalogu `.github/agents/*.agent.md`. W VS Code możesz wywołać ich bezpośrednio w trybie **Copilot Agent Mode** (np. `@lead-orchestrator`, `@task-navigator`).
+2. **Instrukcje Globalne**:  
+   Plik `.github/copilot-instructions.md` instruuje Copilota, aby zawsze traktował `.agents/docs/` jako źródło prawdy o architekturze.
+3. **Szablony Promptów**:  
+   Dodatkowe gotowe prompty znajdziesz w [`.github/prompt-templates.md`](.github/prompt-templates.md).
+
+---
+
+## Struktura Repozytorium
 
 ```text
 dev-buddies/
-├── agents/
-│   ├── app-guide.md            # Buddy od architektury i API
-│   ├── business-interpreter.md # Buddy od logiki biznesowej
-│   ├── data-docent.md          # Buddy od baz danych i ETL
-│   ├── infra-docent.md         # Buddy od Docker/CI/CD/Infry
-│   ├── impact-navigator.md     # Buddy do wyznaczania zakresu tasków
-│   ├── diagram-reviewer.md     # Lintowanie i formatowanie diagramów Mermaid.js
-│   └── code-reviewer.md        # Alex - Staff Engineer do CR
+├── .github/
+│   ├── copilot-instructions.md   # Instrukcja globalna dla GitHub Copilot
+│   ├── prompt-templates.md       # Szablony zapytań dla Copilot Chat
+│   └── agents/                   # Natywne definicje agentów GitHub Copilot (*.agent.md)
+│       ├── lead-orchestrator.agent.md
+│       ├── app-guide.agent.md
+│       ├── domain-architect.agent.md
+│       ├── data-architect.agent.md
+│       ├── infra-architect.agent.md
+│       ├── security-auditor.agent.md
+│       ├── test-strategist.agent.md
+│       ├── task-navigator.agent.md
+│       ├── pre-pr-reviewer.agent.md
+│       └── diagram-reviewer.agent.md
+├── agents/                       # Definicje agentów Google Antigravity
+│   ├── lead-orchestrator.md
+│   ├── app-guide.md
+│   ├── domain-architect.md
+│   ├── data-architect.md
+│   ├── infra-architect.md
+│   ├── security-auditor.md
+│   ├── test-strategist.md
+│   ├── task-navigator.md
+│   ├── pre-pr-reviewer.md
+│   └── diagram-reviewer.md
+├── templates/                    # Szablony wyjściowe Markdown (C4 & Diátaxis)
+│   ├── ONBOARDING_PORTAL.md
+│   ├── ARCHITECTURE.md
+│   ├── DOMAIN_AND_LOGIC.md
+│   ├── DATA_MODEL.md
+│   ├── INFRA_SETUP.md
+│   ├── SECURITY_MODEL.md
+│   ├── TEST_STRATEGY.md
+│   ├── TASK_IMPACT.md
+│   └── PRE_PR_REPORT.md
+├── examples/                     # Przykłady wygenerowanej dokumentacji (Showcase)
+│   └── databricks-lakehouse/     # Przykład dla platformy Azure Databricks (Medallion + DABs + MLflow + Power BI)
 ├── rules/
-│   └── global-constraints.md   # Zasady budżetu kontekstu, diagramów i Graceful Exit
-├── init.sh                     # Skrypt Bash inicjalizujący paczkę
-├── init.ps1                    # Skrypt PowerShell dla Windows
+│   └── global-constraints.md     # Globalne zasady jakości, budżetu kontekstu i Mermaid
+├── .buddiesrc.yaml.example       # Przykładowy plik konfiguracyjny projektu
+├── init.sh                       # Instalator Linux / macOS
+├── init.ps1                      # Instalator Windows PowerShell
+├── LICENSE                       # Licencja MIT
 └── README.md
 ```
 
 ---
 
-## 🚀 Szybki Start (Instrukcja Użycia)
+## 🌟 Przykładowe Wyjście (Showcase)
 
-### 1. Inicjalizacja w nowym repozytorium (Linux / macOS)
-
-W środowisku zintegrowanym lub terminalu docelowego projektu wykonaj:
-
-```bash
-curl -sSL https://raw.githubusercontent.com/TWOJ_GITHUB/dev-buddies/main/init.sh | bash
-```
-
-lub pobierz i uruchom skrypt lokalnie:
-
-```bash
-./init.sh
-```
-
-### 2. Inicjalizacja w środowisku Windows (PowerShell)
-
-```powershell
-.\init.ps1
-```
-
-Skrypt automatycznie:
-- Pobierze prompty agentów do katalogu `.agents/`
-- Doda regułę `.agents/docs/` do pliku `.gitignore` w docelowym repozytorium
+W katalogu [`examples/databricks-lakehouse/`](examples/databricks-lakehouse/) znajdziesz kompletną, gotową dokumentację onboardingową przygotowaną dla zaawansowanej platformy danych klasy Enterprise:
+- **Architektura**: Medallion Lakehouse (Bronze / Silver / Gold Delta Lake) w Unity Catalog.
+- **Orkiestracja**: Databricks Asset Bundles (DABs) + Azure DevOps CI/CD + Terraform.
+- **MLOps & BI**: Rejestr modeli MLflow, batch inference oraz automatyczne odświeżanie raportów Power BI.
 
 ---
 
-## 📄 Licencja
+## Licencja
 
-MIT License - gotowe do swobodnego użycia i dostosowania w dowolnym projekcie.
+Projekt udostępniany na licencji **MIT** – gotowy do swobodnego użycia w projektach komercyjnych, open-source oraz wewnętrznych repozytoriach firmowych.
