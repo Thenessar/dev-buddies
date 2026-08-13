@@ -74,13 +74,18 @@ if ($Copilot -or (Test-Path -Path ".github")) {
 
 Write-Host @"
 
-[READY] Dev Buddies są gotowi do pracy.
+[READY] Dev Buddies są gotowi do pracy w Twoim edytorze!
 
-Szybki Start:
-  1. Google Antigravity: Uruchom agenta @lead-orchestrator
-  2. GitHub Copilot:     Uruchom agenta @lead-orchestrator w Copilot Agent Mode (lub użyj promptów z .github/prompt-templates.md)
-  3. Pierwszy Task:      Uruchom agenta @task-navigator z opisem zadania
-  4. Pre-PR Review:      Uruchom agenta @pre-pr-reviewer przed wystawieniem PR
+Możesz teraz w oknie czatu AI (Google Antigravity lub GitHub Copilot):
 
-Katalog wyjściowy dokumentacji: .agents/docs/
+1. Wygenerować pełną bazę wiedzy o projekcie (Onboarding):
+   "@lead-orchestrator Zbuduj dla mnie pełny portal onboardingowy dla tego repozytorium."
+
+2. Otrzymać plan i listę plików do modyfikacji dla nowego zadania:
+   "@task-navigator Przeanalizuj poniższe zadanie i przygotuj dla mnie plan zmian: [treść zadania]"
+
+3. Sprawdzić jakość kodu przed oddaniem do review zespołowi:
+   "@pre-pr-reviewer Sprawdź moje lokalne zmiany przed wystawieniem PR."
+
+Katalog wynikowy dokumentacji: .agents/docs/
 "@ -ForegroundColor Cyan
